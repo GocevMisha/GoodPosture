@@ -36,7 +36,7 @@ class PhotoFragment : Fragment() {
             ViewModelProviders.of(this).get(PhotoViewModel::class.java)
         val root = inflater.inflate(R.layout.fragment_photo, container, false)
         val photoTextView: TextView = root.findViewById(R.id.tv_photo)
-        photoViewModel.text.observe(this, Observer {
+        photoViewModel.text.observe(viewLifecycleOwner, Observer {
             photoTextView.text = it
         })
         val addPhotoImageButton: ImageButton = root.findViewById(R.id.ib_add_photo)
@@ -49,7 +49,7 @@ class PhotoFragment : Fragment() {
 
     fun isStoragePermissionGranted(): Boolean {
         return if (Build.VERSION.SDK_INT >= 23) {
-            if (checkSelfPermission(context!! ,Manifest.permission.READ_EXTERNAL_STORAGE)
+            if (checkSelfPermission(requireContext() ,Manifest.permission.READ_EXTERNAL_STORAGE)
                 == PackageManager.PERMISSION_GRANTED
             ) {
                 Log.v("log", "Permission is granted")

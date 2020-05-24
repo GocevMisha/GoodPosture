@@ -91,7 +91,6 @@ class HistoryViewModel : ViewModel() {
                                 "$check " +
                                 "$message")
                         realm.beginTransaction()
-                        Log.d("M_kek", "${realmResult.name} $dots $check ${dots?.isNotEmpty()} ${check?.isNotEmpty()}")
                         if(status.equals("ok")){
                             if(!message.equals("processing") && data!=null
                                 && dots!=null &&check!=null
@@ -108,11 +107,7 @@ class HistoryViewModel : ViewModel() {
                                     }
                                     realmResult.personList?.clear()
                                     realmResult.personList?.addAll(personList)
-                                    Log.d("M_HistoryViewModel", "${realmResult.name} ${realmResult.status} ${realmResult.error}")
-                                    realmResult.error = null
-                                    Log.d("M_HistoryViewModel", "${realmResult.name} ${realmResult.status} ${realmResult.error} ${getStatus(realmResult)}")
-
-
+                                     realmResult.error = null
                             }else{
                                 if(message.equals("processing")){
                                     realmResult.status = false

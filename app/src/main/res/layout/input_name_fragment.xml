@@ -43,7 +43,7 @@
     <include
         android:id="@+id/llProgressBar"
         android:visibility="gone"
-        layout="@layout/progress_bar_with_text"/>
+        layout="@layout/progress_bar"/>
 
 
 

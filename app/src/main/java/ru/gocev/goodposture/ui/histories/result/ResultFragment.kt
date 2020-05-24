@@ -72,11 +72,11 @@ class ResultFragment : Fragment() {
 
         when (arguments?.getSerializable("status") as HistoryItem.Status) {
             HistoryItem.Status.OK -> {
-                viewModel.getResult(id).observe(this, Observer<ResultItem> { result ->
+                viewModel.getResult(id).observe(viewLifecycleOwner, Observer<ResultItem> { result ->
                     (activity as MainActivity).supportActionBar?.title = result.name
                     setText(result.persons)
 
-                    Glide.with(context!!)
+                    Glide.with(requireContext())
                         .asBitmap()
                         .load(result.url)
                         .into(object : CustomTarget<Bitmap>() {

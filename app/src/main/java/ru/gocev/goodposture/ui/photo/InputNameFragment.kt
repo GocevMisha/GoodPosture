@@ -67,8 +67,7 @@ class InputNameFragment : Fragment() {
             .responseObject(PostResponse.Deserializer()) { _, _, result ->
                 result.fold(
                     success = {
-                        Log.d("M_InputNameFragment", "Response ${result.component1()?.data?.id} ${result.component1()?.status}")
-                        val serverId = result.component1()?.data?.id
+                         val serverId = result.component1()?.data?.id
                         val status = result.component1()?.status
                         if(status.equals("ok") && serverId!=null)
                             okLeave(uri = file.path, serverId = serverId)
