@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/navigation_photos">
+    <navigation
+        android:id="@+id/navigation_photos"
+        app:startDestination="@+id/navigation_photo">
+        <fragment
+            android:id="@+id/navigation_photo"
+            android:name="ru.gocev.goodposture.ui.photo.photo_fragment.PhotoFragment"
+            android:label="@string/title_photo"
+            tools:layout="@layout/fragment_photo" />
+        <fragment
+            android:id="@+id/navigation_input_name"
+            android:name="ru.gocev.goodposture.ui.photo.InputNameFragment"
+            android:label="@string/title_photo"
+            tools:layout="@layout/input_name_fragment" />
+        <fragment
+            android:id="@+id/navigation_confirmation"
+            android:name="ru.gocev.goodposture.ui.photo.ConfirmationFragment"
+            android:label="@string/title_photo"
+            tools:layout="@layout/confirmation_fragment" />
+    </navigation>
+    <navigation
+        android:id="@+id/navigation_histories"
+        app:startDestination="@+id/navigation_history">
+        <fragment
+            android:id="@+id/navigation_history"
+            android:name="ru.gocev.goodposture.ui.histories.history.HistoryFragment"
+            android:label="@string/title_history"
+            tools:layout="@layout/fragment_history" />
+        <fragment
+            android:id="@+id/navigation_result"
+            android:name="ru.gocev.goodposture.ui.histories.result.ResultFragment"
+            tools:layout="@layout/result_fragment" />
+    </navigation>
+</navigation>

@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">GoodPosture</string>
+    <string name="title_history">История</string>
+    <string name="title_settings">Настройки</string>
+    <string name="title_photo">Фото</string>
+    <string name="title_confirm">Подтверждение</string>
+</resources>
