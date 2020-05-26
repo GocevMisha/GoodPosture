@@ -12,5 +12,10 @@
         android:icon="@drawable/ic_history_black"
         android:title="@string/title_history" />
 
+    <item
+        android:id="@+id/navigation_settings"
+        android:icon="@drawable/ic_settings_black"
+        android:title="@string/title_settings" />
+
 
 </menu>

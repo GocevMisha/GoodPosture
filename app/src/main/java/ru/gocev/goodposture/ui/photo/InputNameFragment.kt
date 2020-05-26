@@ -45,13 +45,13 @@ class InputNameFragment : Fragment() {
         nameEditText = root.findViewById(R.id.et_name)
         imageView = root.findViewById(R.id.iv)
         val uri = arguments?.getParcelable<Uri>("image")
-        Glide.with(context!!).load(uri).into(imageView)
+        Glide.with(requireContext()).load(uri).into(imageView)
         sendTextView = root.findViewById(R.id.tv_send)
         sendTextView.setOnClickListener(View.OnClickListener {
             progressBar.visibility = View.VISIBLE
             var error = true
             if (uri != null) {
-                val file = File(getRealPathFromURI(context!!, uri))
+                val file = File(getRealPathFromURI(requireContext(), uri))
                 upload( file = file)
             }
         })
@@ -60,7 +60,8 @@ class InputNameFragment : Fragment() {
 
 
     private fun upload( file: File) {
-        val baseUrl = "https://bb3cc381.ngrok.io//upload"
+        val pref = requireActivity().getPreferences(Context.MODE_PRIVATE)
+        val baseUrl = pref.getString("api_url", "") as String + "upload"
         Fuel.upload(path = baseUrl, method = Method.POST)
             .add{ FileDataPart(file, "file",  file.name)}
             .timeout(60000)

@@ -1,5 +1,6 @@
 package ru.gocev.goodposture.ui.histories.history
 
+import android.content.Context
 import androidx.lifecycle.switchMap
 import android.util.Log
 import androidx.lifecycle.LiveData
@@ -22,17 +23,17 @@ class HistoryViewModel : ViewModel() {
 
     private lateinit var realm: Realm
     private lateinit var realmResults: RealmResults<PhotoRealm>
-    internal fun getPhotoList(): MutableLiveData<List<HistoryItem>> {
+    internal fun getPhotoList(api_ulr: String): MutableLiveData<List<HistoryItem>> {
         realm = Realm.getDefaultInstance()
         if (photoList == null) {
             photoList = MutableLiveData()
-            load()
+            load(api_ulr)
         }
         return photoList as MutableLiveData<List<HistoryItem>>
     }
-    fun load(){
+    fun load(api_ulr: String){
         loadPhotosFromDB()
-        loadFromServer()
+        loadFromServer(api_ulr)
     }
     private fun loadPhotosFromDB() {
         val photos = ArrayList<HistoryItem>()
@@ -63,18 +64,18 @@ class HistoryViewModel : ViewModel() {
                     else HistoryItem.Status.OK
                 else HistoryItem.Status.WAIT
     }
-    private fun loadFromServer(){
+    private fun loadFromServer(api_ulr: String){
         realmResults = realm.where(PhotoRealm::class.java).findAll()
         if (realmResults.size>0) {
             for (realmResult in realmResults) {
                 Log.d("M_HistoryViewModel", "${realmResult.name}  ${realmResults.indexOf(realmResult)} ${realmResult.serverId} ${realmResult.personList?.toString()}")
-                loadById(realmResult)
+                loadById(realmResult, api_ulr)
             }
         }
 
     }
-    private fun loadById(realmResult: PhotoRealm){
-        val baseUrl = "https://bb3cc381.ngrok.io/result"
+    private fun loadById(realmResult: PhotoRealm, api_ulr: String){
+        val baseUrl = api_ulr + "result"
         Log.d("M_HistoryViewModel", realmResult.serverId)
         Fuel.get(path = baseUrl, parameters =  listOf("id" to realmResult.serverId))
             .timeout(60000)

@@ -36,4 +36,13 @@
             android:name="ru.gocev.goodposture.ui.histories.result.ResultFragment"
             tools:layout="@layout/result_fragment" />
     </navigation>
+    <navigation
+        android:id="@+id/navigation_settings"
+        app:startDestination="@+id/navigation_settings">
+        <fragment
+            android:id="@+id/navigation_settings"
+            android:name="ru.gocev.goodposture.ui.SettingsFragment"
+            android:label="@string/title_settings"
+            tools:layout="@layout/fragment_settings" />
+    </navigation>
 </navigation>
